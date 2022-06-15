@@ -10,6 +10,9 @@ const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2022");
 
   const { items } = props;
+  const filteredItems = items.filter(
+    (item) => `${item.date.getFullYear()}` === filteredYear
+  );
 
   const filterChangeHandler = (year) => setFilteredYear(year);
 
@@ -20,7 +23,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <ExpenseItem
             key={item.id}
             title={item.title}
