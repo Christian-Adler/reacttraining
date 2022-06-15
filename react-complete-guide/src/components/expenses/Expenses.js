@@ -8,13 +8,23 @@ import Card from "../ui/Card";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2022");
+  const filterChangeHandler = (year) => setFilteredYear(year);
 
   const { items } = props;
   const filteredItems = items.filter(
     (item) => `${item.date.getFullYear()}` === filteredYear
   );
 
-  const filterChangeHandler = (year) => setFilteredYear(year);
+  let expensesContent = <p>No expenses found</p>;
+  if (filteredItems.length > 0)
+    expensesContent = filteredItems.map((item) => (
+      <ExpenseItem
+        key={item.id}
+        title={item.title}
+        amount={item.amount}
+        date={item.date}
+      />
+    ));
 
   return (
     <div>
@@ -23,16 +33,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredItems.length === 0 && <p>No expenses found</p>}
-        {filteredItems.length > 0 &&
-          filteredItems.map((item) => (
-            <ExpenseItem
-              key={item.id}
-              title={item.title}
-              amount={item.amount}
-              date={item.date}
-            />
-          ))}
+        {expensesContent}
       </Card>
     </div>
   );
