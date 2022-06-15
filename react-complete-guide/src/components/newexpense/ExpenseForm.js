@@ -2,33 +2,37 @@ import './ExpenseForm.css'
 import {useState} from 'react';
 
 
-const ExpenseForm = () => {
-  const [userInput, setUserInput] = useState({ enteredTitle: '', enteredAmount: '', enteredDate: '' });
-  
-  console.log(userInput);
-  
+const ExpenseForm = (props) => {
+  console.log('ExpenseForm');
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
   const onTitleChange = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: event.target.value }
-    });
+    setEnteredTitle(event.target.value);
   };
-  
   const onAmountChange = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredAmount: event.target.value }
-    });
+    setEnteredAmount(event.target.value);
   };
   const onDateChange = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredDate: event.target.value }
-    });
+    setEnteredDate(event.target.value);
   };
   
-  return <form>
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate)
+    };
+    
+    console.log(expenseData);
+  };
+  
+  return <form onSubmit={onSubmit}>
     <div className="new-expense__controls">
       <div className="new-expense__control">
-        <label>Titel</label>
-        <input type="text" onChange={onTitleChange} value={userInput.enteredTitle}/>
+        <label>Titel{enteredTitle}</label>
+        <input type="text" onChange={onTitleChange} value={enteredTitle}/>
       </div>
       <div className="new-expense__control">
         <label>Amount</label>
