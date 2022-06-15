@@ -3,26 +3,32 @@ import {useState} from 'react';
 
 
 const ExpenseForm = () => {
-  // const [enteredTitle, setEnteredTitle] = useState('');
-  // const [enteredAmount, setEnteredAmount] = useState('');
-  // const [enteredDate, setEnteredDate] = useState('');
   const [userInput, setUserInput] = useState({ enteredTitle: '', enteredAmount: '', enteredDate: '' });
   
+  console.log(userInput);
+  
   const onTitleChange = (event) => {
-    setUserInput({ ...userInput, enteredTitle: event.target.value });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value }
+    });
   };
+  
   const onAmountChange = (event) => {
-    setUserInput({ ...userInput, enteredAmount: event.target.value });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredAmount: event.target.value }
+    });
   };
   const onDateChange = (event) => {
-    setUserInput({ ...userInput, enteredDate: event.target.value });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredDate: event.target.value }
+    });
   };
   
   return <form>
     <div className="new-expense__controls">
       <div className="new-expense__control">
         <label>Titel</label>
-        <input type="text" onChange={onTitleChange} value={enteredTitle}/>
+        <input type="text" onChange={onTitleChange} value={userInput.enteredTitle}/>
       </div>
       <div className="new-expense__control">
         <label>Amount</label>
