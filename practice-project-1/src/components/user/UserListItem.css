@@ -1,0 +1,8 @@
+.userlistitem {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 2px 2px 5px 5px #aaa;
+  padding: 5px;
+  margin: 10px;
+}
