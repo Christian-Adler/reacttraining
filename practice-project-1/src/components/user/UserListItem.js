@@ -1,10 +1,11 @@
 import "./UserListItem.css";
 
-const UserListItem = ({ userName, userAge }) => {
+const UserListItem = ({ user }) => {
+  console.log(user);
   return (
     <li className={`userlistitem round`}>
-      <span>{userName}</span>
-      <span>{userAge}</span>
+      <span>{user.name}</span>
+      <span>{user.age}</span>
     </li>
   );
 };

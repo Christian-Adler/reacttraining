@@ -18,6 +18,7 @@ const UserForm = (props) => {
     const successful = props.addUserHandler({
       name: userName,
       age: parseInt(userAge),
+      id: Math.random().toString(),
     });
     if (successful) {
       setUserName("");
@@ -28,7 +29,7 @@ const UserForm = (props) => {
   return (
     <div className={`userform round`}>
       <h2>Create user</h2>
-      <form>
+      <form onSubmit={createClickHandler}>
         <div className={`inputContainer`}>
           <label>Name: </label>
           <input
@@ -48,9 +49,7 @@ const UserForm = (props) => {
         </div>
 
         <div className={`userform_actions`}>
-          <Button type="submit" onClick={createClickHandler}>
-            Create
-          </Button>
+          <Button type="submit">Create</Button>
         </div>
       </form>
     </div>
