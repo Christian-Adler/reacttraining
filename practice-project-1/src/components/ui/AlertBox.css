@@ -1,0 +1,20 @@
+.alertbox {
+  background: white;
+  box-shadow: 2px 2px 5px 5px #aaa;
+  min-width: 300px;
+  height: auto;
+}
+
+.alertbox h2 {
+  background: purple;
+  color: white;
+  padding: 10px;
+}
+
+.alertbox .alertbox_message {
+  padding: 10px;
+}
+
+.alertbox .alertbox_actions {
+  text-align: right;
+}
