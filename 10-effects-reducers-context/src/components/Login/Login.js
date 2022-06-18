@@ -11,6 +11,21 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(
+    () => {
+      console.log("EFFECT RUNNING");
+
+      // Wird asugefueht bevor useEffect ERNEUT ausgefuehrt wird
+      // oder wenn die Komponente aus dem DOM entfernt (aufgeraeumt) wird.
+      return () => {
+        console.log("EFFECT CLEANUP");
+      };
+    }
+    //      >> Nach jedem State-Update / RenderCycle
+    // , []   >> Nach erstmaligem Rendern - Abhaengigkeiten aendern sich nie
+    // , [enteredPassword]  >> nachdem sich das Passwort geandert hat.
+  );
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(
