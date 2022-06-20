@@ -13,10 +13,13 @@ function App() {
     setShowParagraph((prevState) => !prevState);
   };
   
+  // Obwohl show={false} wird auch die Kindkomponente jedes Mal reevaluiert, wenn Parent.
+  // Nur die State-Aenderung ist fuer Re-Eval ausschlaggebend. Nicht die Props die nach unten gegeben werden.
+  // Der DOM wird nun aber nicht mehr angefasst.
   return (
     <div className="app">
       <h1>Hi there!</h1>
-      <DemoOutput show={showParagraph}/>
+      <DemoOutput show={false}/>
       <Button onClick={toggleParagraphHandler}>ShowParagraph</Button>
     </div>
   );
