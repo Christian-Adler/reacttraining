@@ -16,4 +16,8 @@ const Button = (props) => {
   );
 };
 
+// Button bringt memo nichts, weil prinzipiell
+// props.onClick === props.previos.onClick
+// verglichen wird - 2 Funktionen die zwar das gleiche tun, aber eben nicht die gleiche Funktion sind (neues Objekt)
+// Daher aufpassen, ob man Referenzen/Pointer (Object, Array, Function) in Props uebergibt.
 export default React.memo(Button);
