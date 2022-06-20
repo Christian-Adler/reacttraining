@@ -1,12 +1,10 @@
-// import {useState} from "react";
-// import "./DemoOutput.css";
-// import classes from "./DemoOutput.module.css";
-
 import MyParagraph from "./MyParagraph";
+import React from "react";
 
 const DemoOutput = (props) => {
   console.log('DemoOutput RUNNING')
   return (<MyParagraph>{props.show ? 'this is new' : ''}</MyParagraph>);
 };
 
-export default DemoOutput;
+// React sagen, dass es die Props auswerten soll - wenn keine Props Aenderung, dann kein Reevaluate fuer diese Komponente
+export default React.memo(DemoOutput);
