@@ -5,6 +5,10 @@ class User extends Component {
   // constructor() {
   // }
   
+  componentWillUnmount() {
+    console.log('User will unmount');
+  }
+  
   /**
    * specific method expected from react
    */

@@ -12,9 +12,18 @@ class UserFinder extends Component {
   constructor() {
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: ''
     };
+  }
+  
+  /**
+   * initialy rendered the first time
+   * runs only once = would be useEffect ohne Dependencies
+   */
+  componentDidMount() {
+    // send http request
+    this.setState({ filteredUsers: DUMMY_USERS });
   }
   
   /**
