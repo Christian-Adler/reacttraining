@@ -12,6 +12,12 @@ class Users extends Component {
     }; // ALWAYS! Object in class based components
   }
   
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.users.length === 0) {
+      throw new Error('No users provided!');
+    }
+  }
+  
   toggleUsersHandler() {
     // NOT: this.state.showUsers = false; //NOT!
     //this.setState({}); // React merges the State Object in class based
