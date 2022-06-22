@@ -1,14 +1,12 @@
 import {Component, Fragment} from 'react';
 import Users from './Users';
 import classes from './UserFinder.module.css'
-
-const DUMMY_USERS = [
-  { id: 'u1', name: 'Max' },
-  { id: 'u2', name: 'Manuel' },
-  { id: 'u3', name: 'Julie' },
-];
+import UsersContext from "../store/users-context";
 
 class UserFinder extends Component {
+  // only one static context possible
+  static contextType = UsersContext;
+  
   constructor() {
     super();
     this.state = {
@@ -23,7 +21,7 @@ class UserFinder extends Component {
    */
   componentDidMount() {
     // send http request
-    this.setState({ filteredUsers: DUMMY_USERS });
+    this.setState({ filteredUsers: this.context.users });
   }
   
   /**
@@ -37,7 +35,7 @@ class UserFinder extends Component {
     // this.setState({ filteredUses: DUMMY_USERS.filter((user) => user.name.includes(searchTerm)) })
     // Daher pruefen, ob ueberhaupt ein State-update notwendig ist:
     if (prevState.searchTerm !== this.state.searchTerm) // Enstrpricht den dependencies in useEffect
-      this.setState({ filteredUsers: DUMMY_USERS.filter((user) => user.name.includes(this.state.searchTerm)) })
+      this.setState({ filteredUsers: this.context.users.filter((user) => user.name.includes(this.state.searchTerm)) })
   }
   
   searchChangeHandler(event) {
