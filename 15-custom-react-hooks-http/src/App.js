@@ -9,17 +9,17 @@ function App() {
 
   const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
+  const transformTasks = (data) => {
+    const loadedTasks = [];
+
+    for (const taskKey in data) {
+      loadedTasks.push({ id: taskKey, text: data[taskKey].text });
+    }
+
+    setTasks(loadedTasks);
+  };
+
   useEffect(() => {
-    const transformTasks = (data) => {
-      const loadedTasks = [];
-
-      for (const taskKey in data) {
-        loadedTasks.push({ id: taskKey, text: data[taskKey].text });
-      }
-
-      setTasks(loadedTasks);
-    };
-
     fetchTasks(
       {
         url: "https://react-http-971fb-default-rtdb.firebaseio.com/tasks.json",
@@ -39,7 +39,14 @@ function App() {
         items={tasks}
         loading={isLoading}
         error={error}
-        onFetch={fetchTasks}
+        onFetch={() =>
+          fetchTasks(
+            {
+              url: "https://react-http-971fb-default-rtdb.firebaseio.com/tasks.json",
+            },
+            transformTasks
+          )
+        }
       />
     </React.Fragment>
   );
