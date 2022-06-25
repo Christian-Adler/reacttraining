@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-  const [formIsValid, setFormIsValid] = useState(false);
 
   // validity derived from states
   const enteredNameIsValid = enteredName.trim().length > 0;
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
-  useEffect(() => {
-    setFormIsValid(enteredNameIsValid); // Combine all validities.
-  }, [enteredNameIsValid]);
+  // as well derived...
+  const formIsValid = enteredNameIsValid; // && next && other
 
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
