@@ -1,11 +1,13 @@
+// import {useState} from "react";
+// import "./Order.css";
+// import classes from "./Order.module.css";
+
+import CartContext from "../../store/cart-context";
+import classes from "../Cart/Cart.module.css";
+import Modal from "../UI/Modal";
 import { useContext } from "react";
 
-import Modal from "../UI/Modal";
-import CartItem from "./CartItem";
-import classes from "./Cart.module.css";
-import CartContext from "../../store/cart-context";
-
-const Cart = (props) => {
+const Order = (props) => {
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -20,16 +22,11 @@ const Cart = (props) => {
   };
 
   const cartItems = (
-    <ul className={classes["cart-items"]}>
+    <ul>
       {cartCtx.items.map((item) => (
-        <CartItem
-          key={item.id}
-          name={item.name}
-          amount={item.amount}
-          price={item.price}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          onAdd={cartItemAddHandler.bind(null, item)}
-        />
+        <li>{`${item.amount}x ${item.name} ($${item.price}) = $${
+          item.price * item.amount
+        }`}</li>
       ))}
     </ul>
   );
@@ -41,18 +38,16 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
+      <label>Name usw.</label>
+      <input type="text" />
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
-        {hasItems && (
-          <button className={classes.button} onClick={props.onOrder}>
-            Order
-          </button>
-        )}
+        {hasItems && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
 };
 
-export default Cart;
+export default Order;
