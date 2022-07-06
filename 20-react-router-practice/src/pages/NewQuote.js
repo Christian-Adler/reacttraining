@@ -2,8 +2,13 @@
 // import "./NewQuote.css";
 // import classes from "./NewQuote.module.css";
 
+import QuoteForm from "../components/quotes/QuoteForm";
+
 const NewQuote = (props) => {
-  return (<div><h1>New Quote</h1></div>);
+  const addQuoteHandler = (quoteData) => {
+    console.log(quoteData);
+  }
+  return (<QuoteForm onAddQuote={addQuoteHandler}/>);
 };
 
 export default NewQuote;
