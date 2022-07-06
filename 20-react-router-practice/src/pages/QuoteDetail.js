@@ -2,7 +2,7 @@
 // import "./QuoteDetail.css";
 // import classes from "./QuoteDetail.module.css";
 
-import {Route, useParams} from "react-router-dom";
+import {Redirect, Route, useParams} from "react-router-dom";
 import {Fragment} from "react";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
@@ -20,7 +20,8 @@ const QuoteDetail = (props) => {
   const quote = DUMMY_QUTOES.find(quote => quote.id === params.quoteid);
   
   if (!quote) {
-    return <p>No quote found!</p>
+    return <Redirect to="/404"/>
+    //return <p>No quote found!</p>
   }
   
   return (<Fragment>
