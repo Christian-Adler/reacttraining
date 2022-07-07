@@ -5,9 +5,9 @@
 import QuoteList from "../components/quotes/QuoteList";
 
 const DUMMY_QUTOES = [
-  { id: 'q1', aothor: 'Auth', text: "lerning is fun" },
-  { id: 'q2', aothor: 'Auth1', text: "learning is fun" },
-  { id: 'q3', aothor: 'Auth3', text: "learning is funny" },
+  { id: 'q1', author: 'Auth', text: "lerning is fun" },
+  { id: 'q2', author: 'Auth1', text: "learning is fun" },
+  { id: 'q3', author: 'Auth3', text: "learning is funny" },
 ]
 
 const AllQuotes = (props) => {
