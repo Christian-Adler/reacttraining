@@ -13,16 +13,16 @@ import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 const QuoteDetail = (props) => {
   const params = useParams();
-  const { quoteid } = params;
+  const { quoteId } = params;
   
   const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
   
   useEffect(() => {
-    sendRequest(quoteid);
-  }, [sendRequest, quoteid]);
+    sendRequest(quoteId);
+  }, [sendRequest, quoteId]);
   
   const match = useRouteMatch(); // Match bezieht sich auf den Match, der hierher gefuehrt hat.
-  // /comments kommt daher nicht darin vor weil in App.js <Route path="/quotes/:quoteid"> hierher fuehrt
+  // /comments kommt daher nicht darin vor weil in App.js <Route path="/quotes/:quoteId"> hierher fuehrt
   console.log(match); // {url, path, params}
   
   if (status === 'pending') {
