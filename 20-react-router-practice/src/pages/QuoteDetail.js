@@ -2,7 +2,7 @@
 // import "./QuoteDetail.css";
 // import classes from "./QuoteDetail.module.css";
 
-import {Redirect, Route, useParams} from "react-router-dom";
+import {Link, Redirect, Route, useParams} from "react-router-dom";
 import {Fragment} from "react";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
@@ -26,7 +26,15 @@ const QuoteDetail = (props) => {
   
   return (<Fragment>
     <HighlightedQuote text={quote.text} author={quote.aothor}/>
+    <Route path={`/quotes/${params.quoteid}`} exact>
+      <div className="centered">
+        <Link className="btn--flat" to={`/quotes/${params.quoteid}/comments`}>Show comments</Link>
+      </div>
+    </Route>
     <Route path={`/quotes/${params.quoteid}/comments`}>
+      <div className="centered">
+        <Link className="btn--flat" to={`/quotes/${params.quoteid}`}>Hide comments</Link>
+      </div>
       <Comments/>
     </Route>
   
