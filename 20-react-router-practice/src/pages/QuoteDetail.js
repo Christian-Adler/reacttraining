@@ -3,33 +3,43 @@
 // import classes from "./QuoteDetail.module.css";
 
 import {Link, Redirect, Route, useParams, useRouteMatch} from "react-router-dom";
-import {Fragment} from "react";
+import {Fragment, useEffect} from "react";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-
-
-const DUMMY_QUTOES = [
-  { id: 'q1', author: 'Auth', text: "lerning is fun" },
-  { id: 'q2', author: 'Auth1', text: "learning is fun" },
-  { id: 'q3', author: 'Auth3', text: "learning is funny" },
-]
+import useHttp from "../hooks/use-http";
+import {getSingleQuote} from "../lib/api";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 
 const QuoteDetail = (props) => {
   const params = useParams();
-  const quote = DUMMY_QUTOES.find(quote => quote.id === params.quoteid);
+  const { quoteid } = params;
+  
+  const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
+  
+  useEffect(() => {
+    sendRequest(quoteid);
+  }, [sendRequest, quoteid]);
+  
   const match = useRouteMatch(); // Match bezieht sich auf den Match, der hierher gefuehrt hat.
   // /comments kommt daher nicht darin vor weil in App.js <Route path="/quotes/:quoteid"> hierher fuehrt
   console.log(match); // {url, path, params}
   
-  if (!quote) {
-    return <Redirect to="/404"/>
-    //return <p>No quote found!</p>
+  if (status === 'pending') {
+    return <div className="centered"><LoadingSpinner/></div>;
   }
   
+  if (error) {
+    return <p className="centered">{error}</p>;
+  }
+  
+  if (status === 'completed' && (!loadedQuote.text)) {
+    // return <p className="centered">No quote found</p>;
+    return <Redirect to="/404?err=404"/>
+  }
   
   return (<Fragment>
-    <HighlightedQuote text={quote.text} author={quote.author}/>
+    <HighlightedQuote text={loadedQuote.text} author={loadedQuote.author}/>
     <Route path={`${match.path}`} exact>
       <div className="centered">
         <Link className="btn--flat" to={`${match.url}/comments`}>Show comments</Link>
