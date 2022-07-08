@@ -11,9 +11,7 @@ function App() {
       <MainHeader/>
       <main>
         <Routes>
-          <Route path='/' exact>
-            <Navigate to='/welcome'/>
-          </Route>
+          <Route path='/' element={<Navigate replace to='/welcome'/>}/>
           <Route path='/welcome' element={<Welcome/>}/>
           <Route path='/products' element={<Products/>}/>
           <Route path='/products/:productId' element={<ProductDetail/>}/>
