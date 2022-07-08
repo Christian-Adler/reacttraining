@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const Products = () => {
+  
+  // Programatic navigation would be (inside useEffect or so
+  // const navigate = useNavigate();
+  // navigate('/welcome');
+  
   return (
     <section>
       <h1>The Products Page</h1>
