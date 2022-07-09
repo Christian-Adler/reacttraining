@@ -1,0 +1,13 @@
+Firebase Hosting
+================
+
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+firebase login
+firebase init
+
+
+firebase deploy
+
+firebase hosting:disable
+
+Neues deploy um wieder zu erstellen
