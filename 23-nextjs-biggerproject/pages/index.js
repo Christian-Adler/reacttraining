@@ -1,5 +1,4 @@
 import MeetupList from "../components/meetups/MeetupList";
-import {useEffect, useState} from "react";
 
 const DUMMY_MEETUPS = [
   {
@@ -12,15 +11,23 @@ const DUMMY_MEETUPS = [
   },
 ];
 
-const HomePage = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
-  useEffect(() => {
-    // send http request fetch data
-    setLoadedMeetups(DUMMY_MEETUPS);
-  }, []);
-  
-  
-  return <MeetupList meetups={loadedMeetups}/>;
+const HomePage = (props) => {
+  return <MeetupList meetups={props.meetups}/>;
 };
+
+/**
+ *  only in pages folder
+ *  executes during build process on server - this code is never in the client
+ *  returned props go to props in component function on the first render cycle - therefore pre-rendering has already data (for SEO)
+ * @returns {Promise<{props: {meetups: [{image: string, address: string, description: string, id: string, title: string},{image: string, address: string, description: string, id: string, title: string}]}}>}
+ */
+export async function getStaticProps() {
+  // fetch data from API / database
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    }
+  };
+}
 
 export default HomePage;
