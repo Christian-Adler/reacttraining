@@ -31,4 +31,20 @@ export async function getStaticProps() {
   };
 }
 
+// /**
+//  * Not during the build process but on the server on every request - this code is never in the client  -credentials here would be "save"
+//  * @returns {Promise<void>}
+//  */
+// export async function getServerSideProps(context) {
+//   const req = context.req; // eg. auth
+//   const res = context.res;
+//
+//   // fetch data from API / database
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     },
+//   };
+// }
+
 export default HomePage;
