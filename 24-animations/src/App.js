@@ -5,6 +5,7 @@ import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Backdrop/Backdrop";
 import List from "./components/List/List";
 import Transition from "react-transition-group/Transition";
+import {CSSTransition} from "react-transition-group";
 
 const animationTiming = {
   enter: 400,
@@ -57,16 +58,13 @@ class App extends Component {
             opacity: (state === 'exiting') ? 0 : 1
           }}>{state}</div>}
         </Transition>
-        <Transition
+        <CSSTransition
           mountOnEnter unmountOnExit
           in={this.state.modalIsOpen}
-          timeout={animationTiming}>
-          {
-            state => (
-              <Modal show={state} closed={this.closeModal}/>
-            )
-          }
-        </Transition>
+          timeout={animationTiming}
+          classNames="fade-slide">
+          <Modal closed={this.closeModal}/>
+        </CSSTransition>
         {this.state.modalIsOpen &&
           <Backdrop show/>
         }
