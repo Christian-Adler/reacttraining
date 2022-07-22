@@ -6,6 +6,11 @@ import Backdrop from "./components/Backdrop/Backdrop";
 import List from "./components/List/List";
 import Transition from "react-transition-group/Transition";
 
+const animationTiming = {
+  enter: 400,
+  exit: 1000
+};
+
 class App extends Component {
   state = { modalIsOpen: false, showBlock: false }
   
@@ -25,7 +30,7 @@ class App extends Component {
         }}>Toggle
         </button>
         <br/>
-        <Transition in={this.state.showBlock} timeout={1000}
+        <Transition in={this.state.showBlock} timeout={300}
                     mountOnEnter unmountOnExit>
           {state => <div style={{
             backgroundColor: 'red', width: 100, height: 100, margin: 'auto',
@@ -36,7 +41,7 @@ class App extends Component {
         <Transition
           mountOnEnter unmountOnExit
           in={this.state.modalIsOpen}
-          timeout={300}>
+          timeout={animationTiming}>
           {
             state => (
               <Modal show={state} closed={this.closeModal}/>
