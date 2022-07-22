@@ -31,7 +31,26 @@ class App extends Component {
         </button>
         <br/>
         <Transition in={this.state.showBlock} timeout={300}
-                    mountOnEnter unmountOnExit>
+                    mountOnEnter unmountOnExit
+                    onEnter={() => {
+                      console.log('onEnter')
+                    }}
+                    onEntering={() => {
+                      console.log('onEntering')
+                    }}
+                    onEntered={() => {
+                      console.log('onEntered')
+                    }}
+                    onExit={() => {
+                      console.log('onExit')
+                    }}
+                    onExiting={() => {
+                      console.log('onExiting')
+                    }}
+                    onExited={() => {
+                      console.log('onExited')
+                    }}
+        >
           {state => <div style={{
             backgroundColor: 'red', width: 100, height: 100, margin: 'auto',
             transition: "opacity 1s ease-out",
