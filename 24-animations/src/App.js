@@ -62,7 +62,12 @@ class App extends Component {
           mountOnEnter unmountOnExit
           in={this.state.modalIsOpen}
           timeout={animationTiming}
-          classNames="fade-slide">
+          classNames={{
+            enter: '',
+            enterActive: 'ModalOPEN',
+            exit: '',
+            exitActive: 'ModalCLOSE'
+          }}>
           <Modal closed={this.closeModal}/>
         </CSSTransition>
         {this.state.modalIsOpen &&
