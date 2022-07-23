@@ -3,6 +3,7 @@
 // import classes from "./Greeting.module.css";
 
 import {useState} from "react";
+import Output from "./Output";
 
 const Greeting = (props) => {
   const [changedText, setChangedText] = useState();
@@ -12,8 +13,8 @@ const Greeting = (props) => {
   };
   
   return (<div><h2>Hello World!</h2>
-    {!changedText && <p>I's good to see you!</p>}
-    {changedText && <p>Changed</p>}
+    {!changedText && <Output>I's good to see you!</Output>}
+    {changedText && <Output>Changed</Output>}
     <button onClick={changeTextHandler}>Change text</button>
   </div>);
 };
