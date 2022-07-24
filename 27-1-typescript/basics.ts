@@ -52,3 +52,6 @@ function add(a: number, b: number) {
     return a + b; // return type inferred!
 }
 
+function printValue(value: any) {
+    console.log(value); // no return type -> void inferred
+}
