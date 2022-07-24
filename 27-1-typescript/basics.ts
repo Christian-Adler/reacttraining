@@ -55,3 +55,24 @@ function add(a: number, b: number) {
 function printValue(value: any) {
     console.log(value); // no return type -> void inferred
 }
+
+// Generics
+
+// types not enough - after that helper method typescript would no longer know
+// function insertAtBeginning(array: any, value: any) {
+//     return [value, ...array];
+// }
+//
+// const demoArray = [1, 2, 3];
+// const updatedArray = insertAtBeginning(demoArray, -1); // -1,1,2,3
+// updatedArray[0].split(''); // runtime error
+
+function insertAtBeginning<T>(array: T[], value: T) {
+    return [value, ...array];
+}
+
+const demoArray = [1, 2, 3];
+const updatedArray = insertAtBeginning(demoArray, -1); // -1,1,2,3
+// updatedArray[0].split(''); // compile error - result array is by generics as well type number
+
+const stringArray = insertAtBeginning(['a'], 'b');
