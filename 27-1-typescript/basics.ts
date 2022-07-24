@@ -31,3 +31,8 @@ person = {
 // };
 
 let people: { name: string, age: number }[]; // Array of such objects
+
+// Type inference
+let course = 'React - the complete guide';
+// let course:string = 'React - the complete guide'; // Typ zusaetzlich redundant
+// course=124; // nicht moeglich - course ist als string gesetzt
