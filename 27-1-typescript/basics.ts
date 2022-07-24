@@ -17,8 +17,11 @@ isInstructor = false;
 let hobbies: string[];
 hobbies = ['Sport', 'Eating'];
 
+// type keyword of typescript
+type Person = { name: string, age: number }; //Typedefinition
+
 // let person; // default = any
-let person: { name: string, age: number }; // object type definition - kein =
+let person: Person; // object type definition - kein =
 
 person = {
     name: 'Chris',
@@ -30,7 +33,7 @@ person = {
 //     isEmployee: true
 // };
 
-let people: { name: string, age: number }[]; // Array of such objects
+let people: Person[]; // Array of such objects
 people.push(person);
 
 // Type inference
@@ -42,3 +45,4 @@ let course = 'React - the complete guide';
 // union type - more than one type possible
 let courseNameOrId: string | number = 'react - the complete...'
 courseNameOrId = 124;
+
