@@ -46,3 +46,9 @@ let course = 'React - the complete guide';
 let courseNameOrId: string | number = 'react - the complete...'
 courseNameOrId = 124;
 
+// functions & types
+
+function add(a: number, b: number) {
+    return a + b; // return type inferred!
+}
+
