@@ -13,3 +13,21 @@ userName = 'chris';
 let isInstructor: boolean;
 isInstructor = false;
 
+// More complex
+let hobbies: string[];
+hobbies = ['Sport', 'Eating'];
+
+// let person; // default = any
+let person: { name: string, age: number }; // object type definition - kein =
+
+person = {
+    name: 'Chris',
+    age: 41
+};
+
+// NOT storable - wrong type
+// person = {
+//     isEmployee: true
+// };
+
+let people: { name: string, age: number }[]; // Array of such objects
