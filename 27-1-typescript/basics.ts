@@ -31,8 +31,14 @@ person = {
 // };
 
 let people: { name: string, age: number }[]; // Array of such objects
+people.push(person);
 
 // Type inference
 let course = 'React - the complete guide';
 // let course:string = 'React - the complete guide'; // Typ zusaetzlich redundant
 // course=124; // nicht moeglich - course ist als string gesetzt
+
+
+// union type - more than one type possible
+let courseNameOrId: string | number = 'react - the complete...'
+courseNameOrId = 124;
