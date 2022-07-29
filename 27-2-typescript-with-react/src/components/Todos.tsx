@@ -25,10 +25,12 @@ import classes from "./Todos.module.css";
 //     </ul>
 // };
 
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[], onRemoveTodo: (todoId: string) => void }> = (props) => {
+
     return <ul className={classes.todos}>
         {
-            props.items.map(item => <TodoItem key={item.id} text={item.text}/>)
+            props.items.map(item => <TodoItem key={item.id} text={item.text}
+                                              onClick={props.onRemoveTodo.bind(window, item.id)}/>)
         }
     </ul>
 };
