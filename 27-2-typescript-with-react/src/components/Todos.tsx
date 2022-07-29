@@ -1,11 +1,11 @@
-import React from "react";
-import Todo from "../models/todo";
+import React, {useContext} from "react";
 import TodoItem from "./TodoItem";
 import classes from "./Todos.module.css";
+import {TodosContext} from "../store/todos-context";
 
 // https://stackoverflow.com/questions/71788254/react-18-typescript-children-fc
 // type Props = {
-//     children?: React.ReactNode, // ? >> optional
+//     children?: React.ReactNode; // ? >> optional
 //     items: string[]
 // };
 
@@ -25,12 +25,13 @@ import classes from "./Todos.module.css";
 //     </ul>
 // };
 
-const Todos: React.FC<{ items: Todo[], onRemoveTodo: (todoId: string) => void }> = (props) => {
+const Todos: React.FC = () => {
+    const todosCtx = useContext(TodosContext);
 
     return <ul className={classes.todos}>
         {
-            props.items.map(item => <TodoItem key={item.id} text={item.text}
-                                              onClick={props.onRemoveTodo.bind(window, item.id)}/>)
+            todosCtx.items.map(item => <TodoItem key={item.id} text={item.text}
+                                                 onClick={todosCtx.removeTodo.bind(window, item.id)}/>)
         }
     </ul>
 };
